@@ -65,5 +65,6 @@ int main()
     {
         cout << error << '\n';
     }
+    cout << "Group: 24ПИНЖ\n";
     return 0;
 }
