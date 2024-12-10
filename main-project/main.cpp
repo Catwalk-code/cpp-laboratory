@@ -1,70 +1,119 @@
 #include <iostream>
-
+#include <iomanip>
 using namespace std;
+
+#include "book_subscription.h"
+#include "file_reader.h"
+#include "constants.h"
+#include "filter.h"
+
+void output(book_subscription* subscriptions)
+{
+ /********** вывод читателя **********/
+            cout << "Читатель........: ";
+            // вывод фамилии
+            cout << subscriptions->reader.last_name << " ";
+            // вывод первой буквы имени
+            cout << subscriptions->reader.first_name[0] << ". ";
+            // вывод первой буквы отчества
+            cout << subscriptions->reader.middle_name[0] << ".";
+            cout << '\n';
+            /********** вывод книги **********/
+            cout << "Книга...........: ";
+            // вывод фамилии автора
+            cout << subscriptions->author.last_name << " ";
+            // вывод первой буквы имени автора
+            cout << subscriptions->author.first_name[0] << ". ";
+            // вывод первой буквы отчества автора
+            cout << subscriptions->author.middle_name[0] << ".";
+            cout << ", ";
+            // вывод названия
+            cout << '"' << subscriptions->title << '"';
+            cout << '\n';
+            /********** вывод даты выдачи **********/
+            // вывод года
+            cout << "Дата выдачи.....: ";
+            cout << setw(4) << setfill('0') << subscriptions->start.year << '-';
+            // вывод месяца
+            cout << setw(2) << setfill('0') << subscriptions->start.month << '-';
+            // вывод числа
+            cout << setw(2) << setfill('0') << subscriptions->start.day;
+            cout << '\n';
+            /********** вывод даты возврата **********/
+            // вывод года
+            cout << "Дата возврата...: ";
+            cout << setw(4) << setfill('0') << subscriptions->finish.year << '-';
+            // вывод месяца
+            cout << setw(2) << setfill('0') << subscriptions->finish.month << '-';
+            // вывод числа
+            cout << setw(2) << setfill('0') << subscriptions->finish.day;
+            cout << '\n';
+            cout << '\n';
+}
+
 
 int main()
 {
+    setlocale(LC_ALL, "RU");
     cout << "Laboratory work #9. GIT\n";
-    cout << "Variant #10. РљР°С‚Р°Р»РѕРі С‚РѕРІР°СЂРѕРІ\n";
+    cout << "Variant #10. Каталог товаров\n";
     cout << "Author: Egor Orlov\n";
     book_subscription* subscriptions[MAX_FILE_ROWS_COUNT];
     int size;
     try
     {
         read("data.txt", subscriptions, size);
-        cout << "***** Р‘РёР±Р»РёРѕС‚РµС‡РЅС‹Р№ Р°Р±РѕРЅРµРјРµРЅС‚ *****\n\n";
+        cout << "***** Библиотечный абонемент *****\n\n";
         for (int i = 0; i < size; i++)
         {
-            /********** РІС‹РІРѕРґ С‡РёС‚Р°С‚РµР»СЏ **********/
-            cout << "Р§РёС‚Р°С‚РµР»СЊ........: ";
-            // РІС‹РІРѕРґ С„Р°РјРёР»РёРё
-            cout << subscriptions[i]->reader.last_name << " ";
-            // РІС‹РІРѕРґ РїРµСЂРІРѕР№ Р±СѓРєРІС‹ РёРјРµРЅРё
-            cout << subscriptions[i]->reader.first_name[0] << ". ";
-            // РІС‹РІРѕРґ РїРµСЂРІРѕР№ Р±СѓРєРІС‹ РѕС‚С‡РµСЃС‚РІР°
-            cout << subscriptions[i]->reader.middle_name[0] << ".";
-            cout << '\n';
-            /********** РІС‹РІРѕРґ РєРЅРёРіРё **********/
-            cout << "РљРЅРёРіР°...........: ";
-            // РІС‹РІРѕРґ С„Р°РјРёР»РёРё Р°РІС‚РѕСЂР°
-            cout << subscriptions[i]->author.last_name << " ";
-            // РІС‹РІРѕРґ РїРµСЂРІРѕР№ Р±СѓРєРІС‹ РёРјРµРЅРё Р°РІС‚РѕСЂР°
-            cout << subscriptions[i]->author.first_name[0] << ". ";
-            // РІС‹РІРѕРґ РїРµСЂРІРѕР№ Р±СѓРєРІС‹ РѕС‚С‡РµСЃС‚РІР° Р°РІС‚РѕСЂР°
-            cout << subscriptions[i]->author.middle_name[0] << ".";
-            cout << ", ";
-            // РІС‹РІРѕРґ РЅР°Р·РІР°РЅРёСЏ
-            cout << '"' << subscriptions[i]->title << '"';
-            cout << '\n';
-            /********** РІС‹РІРѕРґ РґР°С‚С‹ РІС‹РґР°С‡Рё **********/
-            // РІС‹РІРѕРґ РіРѕРґР°
-            cout << "Р”Р°С‚Р° РІС‹РґР°С‡Рё.....: ";
-            cout << setw(4) << setfill('0') << subscriptions[i]->start.year << '-';
-            // РІС‹РІРѕРґ РјРµСЃСЏС†Р°
-            cout << setw(2) << setfill('0') << subscriptions[i]->start.month << '-';
-            // РІС‹РІРѕРґ С‡РёСЃР»Р°
-            cout << setw(2) << setfill('0') << subscriptions[i]->start.day;
-            cout << '\n';
-            /********** РІС‹РІРѕРґ РґР°С‚С‹ РІРѕР·РІСЂР°С‚Р° **********/
-            // РІС‹РІРѕРґ РіРѕРґР°
-            cout << "Р”Р°С‚Р° РІРѕР·РІСЂР°С‚Р°...: ";
-            cout << setw(4) << setfill('0') << subscriptions[i]->finish.year << '-';
-            // РІС‹РІРѕРґ РјРµСЃСЏС†Р°
-            cout << setw(2) << setfill('0') << subscriptions[i]->finish.month << '-';
-            // РІС‹РІРѕРґ С‡РёСЃР»Р°
-            cout << setw(2) << setfill('0') << subscriptions[i]->finish.day;
-            cout << '\n';
-            cout << '\n';
+            output(subscriptions[i]);
         }
         for (int i = 0; i < size; i++)
         {
             delete subscriptions[i];
         }
-    }
-    catch (const char* error)
-    {
-        cout << error << '\n';
-    }
-    cout << "Group: 24РџРРќР–\n";
-    return 0;
+bool (*check_function)(book_subscription*) = NULL; // check_function -    ,    bool,
+		                                                   //        book_subscription*
+		cout << "\n     :\n";
+		cout << "1)       \n";
+		cout << "2)        2015- \n";
+		cout << "3)   ,      \n";
+		cout << "\n   : ";
+		int item;
+		cin >> item;
+		cout << '\n';
+		switch (item)
+		{
+		case 1:
+			check_function = check_book_subscription_by_author; //       
+			cout << "*****        *****\n\n";
+			break;
+		case 2:
+			check_function = check_book_subscription_by_date; //       
+			cout << "*****        2015-  *****\n\n";
+			break;
+		
+		default:
+			throw "  ";
+		}
+		if (check_function)
+		{
+			int new_size;
+			book_subscription** filtered = filter(subscriptions, size, check_function, new_size);
+			for (int i = 0; i < new_size; i++)
+			{
+				output(filtered[i]);
+			}
+			delete[] filtered;
+		}
+		for (int i = 0; i < size; i++)
+		{
+			delete subscriptions[i];
+		}
+	}
+	catch (const char* error)
+	{
+		cout << error << '\n';
+	}
+	return 0;
 }
