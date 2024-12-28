@@ -1,56 +1,18 @@
 #ifndef FILTER_H
 #define FILTER_H
 
-#include "book_subscription.h"
+#include "goods_subscription.h"
 
-book_subscription** filter(book_subscription* array[], int size, bool (*check)(book_subscription* element), int& result_size);
-
-/*
-  <function_name>:
-              ,
-          true,   
-    ,     
-
-:
-    array       -    
-    size        -     
-    check       -    .
-                         
-                   ,    
-    result_data - ,    - ,  
-                      
-
- 
-          ,  
-     (     true)
-*/
+GoodsSubscription** filter(GoodsSubscription* array[], int size, bool (*check)(GoodsSubscription* element), int& result_size);
 
 
-bool check_book_subscription_by_author(book_subscription* element);
 
-/*
-  check_book_subscription_by_author:
-      - ,           
-
-:
-    element -   ,   
-
- 
-    true,           ,  false   
-*/
+bool check_GoodsSubscription_by_promtovari(GoodsSubscription* element);
 
 
-bool check_book_subscription_by_date(book_subscription* element);
 
-/*
-  check_book_subscription_by_date:
-      - ,           2021- 
 
-:
-    element -   ,   
+bool check_GoodsSubscription_by_price(GoodsSubscription* element);
 
- 
-    true,           2021- ,  false   
-*/
 
 #endif

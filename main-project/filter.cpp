@@ -2,9 +2,9 @@
 #include <cstring>
 #include <iostream>
 
-book_subscription** filter(book_subscription* array[], int size, bool (*check)(book_subscription* element), int& result_size)
+GoodsSubscription** filter(GoodsSubscription* array[], int size, bool (*check)(GoodsSubscription* element), int& result_size)
 {
-	book_subscription** result = new book_subscription*[size];
+	GoodsSubscription** result = new GoodsSubscription * [size];
 	result_size = 0;
 	for (int i = 0; i < size; i++)
 	{
@@ -16,15 +16,14 @@ book_subscription** filter(book_subscription* array[], int size, bool (*check)(b
 	return result;
 }
 
-bool check_book_subscription_by_author(book_subscription* element)
+bool check_GoodsSubscription_by_promtovari(GoodsSubscription* element)
 {
-	return strcmp(element->author.first_name, "") == 0 &&
-	       strcmp(element->author.middle_name, "") == 0 &&
-	       strcmp(element->author.last_name, "") == 0;
+	return element->category.categoryofgoods == "Промтовары";
+		
 }
 
-bool check_book_subscription_by_date(book_subscription* element)
+bool check_GoodsSubscription_by_price(GoodsSubscription* element)
 {
-	return element->start.month == 3 && element->start.year == 2015;
+	return element->price.money>100;
 }
 
