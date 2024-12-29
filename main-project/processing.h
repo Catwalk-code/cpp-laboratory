@@ -1,9 +1,9 @@
 #ifndef PROCESSING_H
 #define PROCESSING_H
-
+using namespace std;
 #include "goods_subscription.h"
-
-double process(GoodsSubscription* array[], int size);
+#include <string>
+double process(GoodsSubscription* array[], int size,string category);
 
 #endif
 
