@@ -1,9 +1,9 @@
 #ifndef PROCESSING_H
 #define PROCESSING_H
 
-#include "book_subscription.h"
+#include "goods_subscription.h"
 
-int process(book_subscription* array[], int size);
+double process(GoodsSubscription* array[], int size);
 
 #endif
 
